@@ -1,0 +1,186 @@
+version: '3'
+
+networks:
+    moefgaga_network:
+
+services:
+    nginx-proxy:
+        image: jc21/nginx-proxy-manager
+        restart: unless-stopped
+        ports:
+            - 80:80
+            - 81:81
+            - 443:443
+        volumes:
+            - ./data:/data
+            - ./letsencrypt:/etc/letsencrypt
+        networks:
+            - moefgaga_network
+
+    app:
+        build:
+            context: .
+        container_name: app
+        environment:
+            - PORT=80
+        depends_on:
+            - nginx-proxy
+            - mysql
+            - pma
+        networks:
+            - moefgaga_network
+
+    mysql:
+        image: mariadb:10.7
+        container_name: mysql
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: moefgaga_db
+            MYSQL_USER: moefgaga
+            MYSQL_PASSWORD: m03fg@g@
+            MYSQL_ROOT_PASSWORD: m03fg@g@
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        # volumes:
+        #   - ./db/mysql:/var/lib/mysql
+        volumes:
+            - mysql_volume:/var/lib/mysql
+        networks:
+            - moefgaga_network
+
+    postgres:
+        image: postgres:latest
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres_volume:/var/lib/postgresql/data
+        # - ./docker/pg-db-init-dev.sql:/docker-entrypoint-initdb.d/init.sql
+        networks:
+            - moefgaga_network
+
+    # php:
+    #     build:
+    #         context: ./docker
+    #         dockerfile: php.dockerfile
+    #         args:
+    #             - UID=${UID:-1000}
+    #             - GID=${GID:-1000}
+    #     container_name: php
+    #     volumes:
+    #         - ./:/var/www/html:delegated
+    #     networks:
+    #         - moefgaga_network
+
+    redis:
+        image: redis:alpine
+        container_name: redis
+        restart: unless-stopped
+        ports:
+            - 6379:6379
+        volumes:
+            - redis_volume:/data
+        networks:
+            - moefgaga_network
+
+    # composer:
+    #     build:
+    #         context: ./docker
+    #         dockerfile: composer.dockerfile
+    #         args:
+    #             - UID=${UID:-1000}
+    #             - GID=${GID:-1000}
+    #     container_name: composer
+    #     volumes:
+    #         - ./:/var/www/html
+    #         # working_dir: /var/www/html
+    #     working_dir: /var/www
+    #     depends_on:
+    #         - php
+    #     user: moefgaga
+    #     entrypoint: ['composer', '--ignore-platform-reqs']
+    #     networks:
+    #         - moefgaga_network
+
+    npm:
+        image: node:16
+        container_name: npm
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 3000:3000
+            - 3001:3001
+        working_dir: /var/www
+        entrypoint: ['npm']
+        networks:
+            - moefgaga_network
+
+    yarn:
+        image: node:16
+        container_name: yarn
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 3000:3000
+            - 3001:3001
+        working_dir: /var/www
+        entrypoint: ['yarn']
+        networks:
+            - moefgaga_network
+
+    # artisan:
+    #     build:
+    #         context: ./docker
+    #         dockerfile: php.dockerfile
+    #         args:
+    #             - UID=${UID:-1000}
+    #             - GID=${GID:-1000}
+    #     container_name: artisan
+    #     volumes:
+    #         - ./:/var/www/html:delegated
+    #     depends_on:
+    #         - mysql
+    #     working_dir: /var/www/html
+    #     entrypoint: ['php', '/var/www/html/artisan']
+    #     networks:
+    #         - moefgaga_network
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: mailhog
+        ports:
+            - 1025:1025
+            - 8025:8025
+        networks:
+            - moefgaga_network
+
+    pma:
+        image: phpmyadmin:5.1.1
+        restart: always
+        depends_on:
+            # - nginx-proxy
+            - mysql
+        ports:
+            - 81:80
+        environment:
+            # - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+            - PMA_USER=moefgaga
+            - PMA_PASSWORD=m03fg@g@
+            - UPLOAD_LIMIT=999M
+            # - PMA_ABSOLUTE_URI=http://phpma.test/
+        networks:
+            - moefgaga_network
+
+volumes:
+    # app_volume:
+    mysql_volume:
+    postgres_volume:
+    redis_volume:
