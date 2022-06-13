@@ -19,12 +19,12 @@ class VideosController extends Controller {
 	|
 	*/
 
-	public function index(){
+	public function index() {
         $videos = Video::orderBy('id', 'asc')->get();
 		return view('videos.index')->with('videos', $videos);
 	}
 
-	public function show($videolink){
+	public function show($videolink) {
 		$videolink = str_replace('-', ' ', $videolink);
 
 		$video = Video::where('name', 'LIKE', $videolink)->first();
@@ -50,5 +50,10 @@ class VideosController extends Controller {
         $next_video = Video::where('id', '=', $next_video_id)->first();
 
         return view('videos.show', compact('video', 'prev_video', 'next_video'));
+	}
+
+    public function adminVideos() {
+        $videos = Video::all();
+		return view('admin.videos')->with('videos', $videos);
 	}
 }

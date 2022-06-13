@@ -44,19 +44,19 @@
 					<div class="clearfix">
 						<div class="grid_6 alpha fll">
 
-							<input type="text" name="senderName" {{(old('senderName')) ? ' value="' . old('senderName') .'"' : ''}} id="senderName" placeholder="Name *" class="requiredField" />
+							<input type="text" name="name" {{(old('name')) ? ' value="' . old('name') .'"' : ''}} id="name" placeholder="Name *" class="requiredField" style="box-sizing: border-box; width: 100%" />
 
-                            @if($errors->has('senderName'))
-                                {{$errors->first('senderName')}}
+                            @if($errors->has('name'))
+                                {{$errors->first('name')}}
                             @endif
 
 						</div>
 						<div class="grid_6 omega flr">
 
-							<input type="text" name="senderEmail" {{(old('senderEmail')) ? ' value="' . old('senderEmail') .'"' : ''}} id="senderEmail" placeholder="Email Address *" class="requiredField email" />
+							<input type="text" name="email" {{(old('email')) ? ' value="' . old('email') .'"' : ''}} id="email" placeholder="Email Address *" class="requiredField email" style="box-sizing: border-box; width: 100%" />
 
-							@if($errors->has('senderEmail'))
-                                {{$errors->first('senderEmail')}}
+							@if($errors->has('email'))
+                                {{$errors->first('email')}}
                             @endif
 
 						</div>
@@ -91,8 +91,10 @@
 			<div class="def-block widget">
 				<h4> Get in Touch </h4><span class="liner"></span>
 				<div class="widget-content">
-					<div id="map" class="mb"></div>
-					<p>Come and visit us anyday from 15:00 to 19:00 and 21:00 to 06:00 </p>
+					<div id="map" class="mb">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.0075559984657!2d2.8429891161369727!3d41.6987725845949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb173a535b79c3%3A0xaa3bae7535e3c5b3!2sMoef%20Gaga!5e0!3m2!1sen!2smt!4v1654929816451!5m2!1sen!2smt" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+					<p>Come and visit us anyday from 22:00 to 05:30 </p>
 					<p>Phone: <strong> 0034 646032937</strong> <br> Email: <strong>contact@discomoefgaga.com</strong></p>
 				</div><!-- widget content -->
 			</div><!-- def block widget details -->
@@ -124,22 +126,22 @@
     <script>
         $('.check-exists').existsChecker();
     </script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript" src="_/js/gmap3.js"></script>
-	<script type="text/javascript">
-	/* <![CDATA[ */
-		jQuery(function () {
-		    jQuery("#map").gmap3({
-		        marker: {
-		            address: "Calle Santa Cristina 14 Lloret de Mar"
-		        },
-		        map: {
-		            options: {
-		                zoom: 16
-		            }
-		        }
-		    });
-		});
-	/* ]]> */
-	</script>
+    {{--
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="_/js/gmap3.js"></script>
+        <script type="text/javascript">
+            jQuery(function () {
+                jQuery("#map").gmap3({
+                    marker: {
+                        address: "Calle Santa Cristina 14 Lloret de Mar"
+                    },
+                    map: {
+                        options: {
+                            zoom: 16
+                        }
+                    }
+                });
+            });
+        </script>
+    --}}
 @stop

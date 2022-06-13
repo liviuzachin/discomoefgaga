@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
 			speed: 300,
 			autoArrows: true
 		}).lavaLamp({
-			fx: "easeOutExpo", 
+			fx: "easeOutExpo",
 			speed: 600,
 			setOnClick: false,
 			click: function(event, menuItem) {
@@ -129,7 +129,7 @@ jQuery(document).ready(function ($) {
 			jQuery("#toTop").removeClass("hidett").addClass("showtt");
 		}
 	});
-	
+
 	// Scroller
 	if ($(".mtracks")[0]) {
 		$('.mtracks').nanoScroller();
@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
 			keyboardNav: true
 		});
 	}
-	
+
 	// SignIn Popup
 	var popupStatus = 0;
 	$("#Login_PopUp_Link").click(function() {
@@ -168,7 +168,7 @@ jQuery(document).ready(function ($) {
 		});
 		// Aligning bg
 		$("#LoginBackgroundPopup").css({"height": windowHeight});
-	
+
 		// Pop up the div and Bg
 		if (popupStatus == 0) {
 			$("#LoginBackgroundPopup").css({"opacity": "0.7"});
@@ -240,7 +240,7 @@ jQuery(document).ready(function ($) {
 	if ($("a[data-gal^='photo']")[0]) {
 		$("a[data-gal^='photo']").prettyPhoto({theme: 'dark_rounded'});
 	}
-	
+
 	// Ajax Contact
 	if ($("#contactForm")[0]) {
 		$('#contactForm').submit(function () {
@@ -271,7 +271,8 @@ jQuery(document).ready(function ($) {
 					$("#contactForm #sendMessage").attr("disabled", "disabled").val('Sending message. Please wait...');
 				});
 				var formInput = $(this).serialize();
-				$.post($(this).attr('action'), formInput, function (data) {
+                $.post($(this).attr('action'), formInput, function (data) {
+                    console.log('res: ', data)
 					$('#contactForm').slideUp("normal", function () {
 						$(this).before('<div class="notification-box notification-box-success"><p><i class="icon-ok"></i>Thanks!</strong> Your email was successfully sent. We check Our email all the time, so we should be in touch soon.</p><a href="/contact">Do you want to send another message?</a></div>');
 					});

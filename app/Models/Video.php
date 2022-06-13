@@ -5,5 +5,5 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model {
-    // public $table = 'videos';
+    protected $fillable = ['name', 'link', 'description'];
 }

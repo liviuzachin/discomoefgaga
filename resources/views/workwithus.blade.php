@@ -25,7 +25,6 @@
 	<!-- form popup -->
 	<div id="popupForm">
 		<div class="def-block widget">
-
 			<!-- <h4> There was an error proccessing your form </h4><span class="liner"></span> -->
 			<div id="popupFormContent"></div>
 			<a id="popupFormClose">CLOSE</a>
@@ -94,11 +93,12 @@
 						<div class="grid_6 omega flr">
 							<select name="position" class="flr" style="width: 100%; height: 54px;">
 								<option value="">Select a Position *</option>
-								<option value="Public Relations">Public Relations</option>
+                                <option value="Anything Available">Anything</option>
 								<option value="Bartender">Bartender</option>
-								<option value="Waiter">Waiter</option>
+                                <option value="DJ">DJ</option>
+                                <option value="Public Relations">Public Relations</option>
 								<option value="Security">Security</option>
-								<option value="Anything Available">Anything</option>
+                                <option value="Waiter">Waiter</option>
 							</select>
 						</div>
 
@@ -108,16 +108,14 @@
 						</div>
 
 						<div class="grid_6 omega flr">
-							<label for="cv" style="padding-left: 10px; color: #F2F2F2; cursor: text;">Copy of your CV</label>
+							<label for="cv" style="padding-left: 10px; color: #F2F2F2; cursor: text;">Copy of your CV/Resume</label>
 							<input type="file" name="cv" id="uploadCv" required style="padding-left: 10px;"/>
 						</div>
 
 					</div>
 
 					<div style="margin-top: 10px">
-
 						<textarea name="message" id="message" placeholder="Tell us something about yourself. Ex: Why should we employ you?" class="requiredField" rows="8" required></textarea>
-
 					</div>
 
 					<input type="submit" id="sendApplication" name="send_application" value="Send Application" class="tbutton large" style="width: 100%;"/>
@@ -149,5 +147,4 @@
 
 @section('postscripts')
 <script type="text/javascript" src="/_/js/apply-work-ajax.js"></script>
-
 @stop

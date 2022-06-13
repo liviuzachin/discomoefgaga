@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title')
 <title>Register Account | Moef GaGa Discotheque | Best club in Lloret de Mar - Spain</title>
 <meta name="description" content="Create Account | Moef Gaga Disco | Best party in Lloret de Mar, Spain">
@@ -119,25 +119,23 @@
 
     <script type="text/javascript" src="{{URL::to('/')}}/_/js/existscheck.jquery.js"></script>
     <script>
-      $('.check-exists').existsChecker();
+        $('.check-exists').existsChecker();
     </script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="{{URL::to('/')}}/_/js/gmap3.js"></script>
 	<script type="text/javascript">
-	/* <![CDATA[ */
-		jQuery(function () {
-		    jQuery("#map").gmap3({
-		        marker: {
-		            address: "Calle Santa Cristina 14 Lloret de Mar"
-		        },
-		        map: {
-		            options: {
-		                zoom: 16
-		            }
-		        }
-		    });
-		});
-	/* ]]> */
+        jQuery(function () {
+            jQuery("#map").gmap3({
+                marker: {
+                    address: "Calle Santa Cristina 14 Lloret de Mar"
+                },
+                map: {
+                    options: {
+                        zoom: 16
+                    }
+                }
+            });
+        });
 	</script>
 
 @stop

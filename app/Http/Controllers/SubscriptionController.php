@@ -2,51 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller {
 
-	public function postEmail() {
-        $subscription = new Subscription;
-        $rules = array(
-            'email' => array('required', 'email', 'unique:subscriptions,email'), // Email is required and should satisfy E-mail format and it should be unique for table users.
-        );
-        $validation = Validator::make(Input::all(), $rules);
+	public function postEmail(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:subscriptions',
+        ]);
 
-        if($validation->fails()) {
-            return Redirect::back()->with('message', '<p>That email is already registered in our database or is not a valid email address. Please use another email to subscribe!</p>');
+        if($validator->fails()) {
+            return response()->json(['message' => 'That email is already subscribed or is not a valid email address. Please use another email address to subscribe!'], 400);
         } else {
-            $subscription->email = Input::get('email');
+            $data = $validator->validated();
+            $subscription = new Subscription;
+            $subscription->email = $data['email'];
             $subscription->save();
-            return Redirect::back()->with('message','<p>You have succesfully subscribed to our newsletter!</p><h5>KEEP CALM AND WAIT FOR THE UPCOMING NEWS</h5><br>');
+            return response()->json(['message' => 'You have succesfully subscribed to our newsletter! KEEP CALM AND WAIT FOR THE UPCOMING NEWS!']);
         }
 	}
 
-	public function checkEmail() {
-        $db = new PDO('mysql:host=127.0.0.1;dbname=moefgaga', 'root', '');
-		if(isset($_GET['type'], $_GET['value'])) {
-
-			$type = strtolower(trim($_GET['type']));
-			$value = strtolower(trim($_GET['value']));
-
-			$output = ['exists' => false];
-
-			if(in_array($type, ['email'])) {
-                switch($type) {
-                    case 'email':
-                        $check = $db->prepare("
-                            SELECT COUNT(*) AS count
-                            FROM subscriptions
-                            WHERE email = :value
-                        ");
-                    break;
-                }
-                $check->execute(['value' => $value]);
-                $output['exists'] = $check->fetchObject()->count ? true : false;
-
-                echo json_encode($output);
-			}
-		}
+	public function checkEmail(Request $request) {
+        $data = $request->validate([
+            'type' => 'required',
+            'value' => 'required|email',
+        ]);
+        $sub = Subscription::where('email', $data['value'])->first();
+        return response()->json(['exists' => !!$sub]);
 	}
-
 }

@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title')
 <title>Upload Photos | Moef GaGa Discotheque | Best club in Lloret de Mar - Spain</title>
 <meta name="description" content="Upload Photos | Moef Gaga Disco | Best party in Lloret de Mar, Spain">
@@ -35,7 +35,7 @@
 					</div>
 
 					<input type="submit" id="submit" name="uploadPhotos" value="Upload Photos" />
-                    
+
                     <div class="bar">
                         <span class="bar-fill" id="pb"><span class="bar-fill-text" id="pt"></span></span>
                     </div>
@@ -97,7 +97,7 @@
 						    	}
 						    });
 					    });
-					    
+
 					</script>
                     {{Form::token()}}
 				{{Form::close()}} <!-- end form -->
@@ -105,7 +105,7 @@
 			</div><!-- def block -->
 		</div><!-- span8 posts -->
 
-		
+
 	</div><!-- row clearfix -->
 </div><!-- end page content -->
 

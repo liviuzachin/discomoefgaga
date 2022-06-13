@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title')
 <title>Popular Tracks | Moef GaGa Discotheque | Best club in Lloret de Mar - Spain</title>
 <meta name="description" content="Popular tracks playlist that DJs are playing at Moef Gaga Disco. We make best parties in Lloret de Mar - Spain - great house elektro progressive techno hip-hop music">
@@ -7,19 +7,19 @@
 @section('content')
 
 <div class="under_header">
-	<picture>
-	    <!--[if IE 9]><video hidden=""><![endif]-->
-	    <source
-	        srcset="/images/assets/breadcrumbs4-w480.png"
-	        media="(max-width: 480px)" />
-	    <source
-	        srcset="/images/assets/breadcrumbs4.png"
-	        media="(min-width: 481px)" />
-	    <!--[if IE 9]></video(max-width: 1400px)><![endif]-->
-	    <img
-	        src="/images/assets/breadcrumbs4.png"
-	        alt="Top 10 Songs Page" />
-	</picture>
+    <picture>
+        <!--[if IE 9]><video hidden=""><![endif]-->
+        <source
+            srcset="/images/assets/breadcrumbs4-w480.png"
+            media="(max-width: 480px)" />
+        <source
+            srcset="/images/assets/breadcrumbs4.png"
+            media="(min-width: 481px)" />
+        <!--[if IE 9]></video(max-width: 1400px)><![endif]-->
+        <img
+            src="/images/assets/breadcrumbs4.png"
+            alt="Top 10 Songs Page" />
+    </picture>
 </div><!-- under header -->
 
 
@@ -40,8 +40,8 @@
 			<div class="def-block">
 				<div class="post row-fluid clearfix">
 
-				    <div class="video-container">
-				    <iframe style="width:100%; height:100%;" src="https://www.youtube.com/embed/{{$song->link}}?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-container">
+                        <iframe style="width:100%; height:100%;" src="https://www.youtube.com/embed/{{$song->link}}?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
 					</div>
 
 					<h3 class="post-title"> <a href="#">{{$song->artist}} - {{$song->name}}</a> </h3>

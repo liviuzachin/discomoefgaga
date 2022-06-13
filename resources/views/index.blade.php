@@ -236,7 +236,7 @@
                 <div class="widget-content row-fluid">
                 <div class="span3 tac">
                     <span class="event-date">?</span>
-                    <span class="event-month">April</span>
+                    <span class="event-month">{{ date('F') }}</span>
                 </div>
                 <div class="span9">
                     <p>Planning...</p>
@@ -251,30 +251,30 @@
                 <div class="widget-content row-fluid">
                 <div class="videos clearfix flexslider">
                     <ul class="slides">
-                    <li class="featured-video">
-                        <a href="/videos/Extended-Schaumparty-im-Moef-Gaga">
-                        <img src="http://img.youtube.com/vi/RkTf15if3ZY/0.jpg" alt="#">
-                        <i class="icon-play-sign"></i>
-                        <h3>Extended Schaumparty im Moef Gaga</h3>
-                        <span>Jam Reisen</span>
-                        </a>
-                    </li><!-- slide -->
-                    <li class="featured-video">
-                        <a href="/videos/Moef-GaGa-Festival-der-Meister">
-                        <img src="http://img.youtube.com/vi/5AodCHRhpmw/0.jpg" alt="#">
-                        <i class="icon-play-sign"></i>
-                        <h3>Moef Gaga Festival der Meister</h3>
-                        <span>FUN Reisen</span>
-                        </a>
-                    </li><!-- slide -->
-                    <li class="featured-video">
-                        <a href="/videos/The-best-Foam-Party-in-Lloret-de-Mar-at-Moef-Gaga-Disco">
-                        <img src="http://img.youtube.com/vi/7DkR-2VlZxw/0.jpg" alt="#">
-                        <i class="icon-play-sign"></i>
-                        <h3>The best Foam Party in Lloret de Mar at Moef Gaga</h3>
-                        <span>FUN Reisen</span>
-                        </a>
-                    </li><!-- slide -->
+                        {{-- <li class="featured-video">
+                            <a href="/videos/Extended-Schaumparty-im-Moef-Gaga">
+                                <img src="http://img.youtube.com/vi/RkTf15if3ZY/0.jpg" alt="#">
+                                <i class="icon-play-sign"></i>
+                                <h3>Extended Schaumparty im Moef Gaga</h3>
+                                <span>Jam Reisen</span>
+                            </a>
+                        </li> --}}
+                        <li class="featured-video">
+                            <a href="/videos/Moef-GaGa-Festival-der-Meister">
+                            <img src="http://img.youtube.com/vi/5AodCHRhpmw/0.jpg" alt="#">
+                            <i class="icon-play-sign"></i>
+                            <h3>Moef Gaga Festival der Meister</h3>
+                            <span>FUN Reisen</span>
+                            </a>
+                        </li><!-- slide -->
+                        <li class="featured-video">
+                            <a href="/videos/The-best-Foam-Party-in-Lloret-de-Mar-at-Moef-Gaga-Disco">
+                            <img src="http://img.youtube.com/vi/7DkR-2VlZxw/0.jpg" alt="#">
+                            <i class="icon-play-sign"></i>
+                            <h3>The best Foam Party in Lloret de Mar at Moef Gaga</h3>
+                            <span>FUN Reisen</span>
+                            </a>
+                        </li><!-- slide -->
                     </ul>
                 </div>
                 </div><!-- widget content -->

@@ -15,6 +15,12 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('songs.index') }}" :active="request()->routeIs('songs.index')">
+                        {{ __('Songs') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin-videos') }}" :active="request()->routeIs('admin-videos')">
+                        {{ __('Videos') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -140,6 +146,9 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('songs.index') }}" :active="request()->routeIs('songs.index')">
+                {{ __('Songs') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -172,9 +181,10 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
-
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   @click.prevent="$root.submit();">
+                    <x-jet-responsive-nav-link
+                        href="{{ route('logout') }}"
+                        @click.prevent="$root.submit();"
+                    >
                         {{ __('Log Out') }}
                     </x-jet-responsive-nav-link>
                 </form>

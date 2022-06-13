@@ -2,36 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+// use Mail;
+use App\Mail\ContactMail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+
 class ContactController extends Controller {
 
 	public function contact() {
 		return view('contact');
 	}
 
-	public function postContact() {
-		$valid = Validator::make(
-            Input::all(),
-            [
-                'senderName' => 'required|max:30|min:3',
-                'senderEmail'    => 'required|max:30|email',
-				'message' => 'required|min:5'
-            ]
-        );
-        if($valid->fails()) {
-            // Redirect to the contact page
-            return Redirect::route('contact')
-                    ->withErrors($valid)
-                    ->withInput();
-        } else {
-			$fromname = Input::get('senderName');
-			$fromemail    = Input::get('senderEmail');
-            $mesaj = Input::get('message');
+	public function postContact(Request $request) {
+		$data = $request->validate([
+            'name' => 'required|max:30|min:3',
+            'email' => 'required|max:30|email',
+            'message' => 'required|min:5',
+        ]);
 
-			Mail::send('emails.contact', array('name' => $fromname, 'email' => $fromemail, 'mesaj' => $mesaj), function($message) {
-                $message->to('liviuzachin@yahoo.com', 'Liviu')->subject('Contact Form Message to Moef Gaga Disco');
-            });
-            return Redirect::route('contact')->with('global', 'Your message have been sent! ');
-		}
+        try {
+            Mail::to('liviuzachin@yahoo.com', 'Liviu')->send(new ContactMail($data));
+        } catch (TransportExceptionInterface $error) {
+            // return back()->with('error', 'We could not send your message at the moment. Please try again later. ');
+            return response()->json(['message' => 'Sorry! We could not send your message at the moment. Please try again later.'], 400);
+        }
+        // return back()->with('global', 'Your message have been sent!');
+        return response()->json(['message' => 'Great! Your message have been sent!']);
 	}
 
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UploadsController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\WorkController;
@@ -52,8 +54,15 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
+])->prefix('admin')->group(function () {
+    Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Route::get('/songs', function () {
+    //     return view('admin.songs');
+    // })->name('admin-songs');
+    Route::resource('songs', SongController::class);
+
+    Route::get('/videos', [VideosController::class, 'adminVideos'])->name('admin-videos');
 });

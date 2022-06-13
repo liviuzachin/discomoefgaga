@@ -26,14 +26,14 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles/icons/font-awesome-ie7.min.css" />
 	<![endif]-->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
 
 	<!-- Favicon -->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/favicon.ico">
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
 </head>
 <body>
     <div id="layout" class="full">
@@ -78,11 +78,11 @@
         <header id="header" class="glue">
             <div class="row clearfix">
                 <div class="little-head">
-                    @if(Auth::check())
+                    {{-- @if(Auth::check())
                         <div id="Logout_PopUp_Link" class="sign-btn tbutton small"><span><a href="{{URL::route('account-sign-out')}}">Sign Out {{Auth::user()->username}}</a></span></div>
                     @else
-                    <!-- <div id="Login_PopUp_Link" class="sign-btn tbutton small"><span>Sign In</span></div> -->
-                    @endif
+                        <div id="Login_PopUp_Link" class="sign-btn tbutton small"><span>Sign In</span></div>
+                    @endif --}}
                     <div class="social social-head">
                         <a href="http://twitter.com/MoefGagaLloret" class="bottomtip" title="Follow us on Twitter" target="_blank"><i class="icon-twitter"></i></a>
                         <a href="http://fb.com/MoefGagaLloret" class="bottomtip" title="Like us on Facebook" target="_blank"><i class="icon-facebook"></i></a>
@@ -94,10 +94,12 @@
 
                     <div class="search">
                     <p>Connect with us !</p>
-                        <!-- <form action="" id="search" method="get">
+                    <!--
+                        <form action="" id="search" method="get">
                             <input id="inputhead" name="search" type="text" onfocus="if (this.value=='Start Searching...') this.value = '';" onblur="if (this.value=='') this.value = 'Start Searching...';" value="Start Searching..." placeholder="Start Searching ...">
                             <button type="submit"><i class="icon-search"></i></button>
-                        </form>end form -->
+                        </form>
+                    -->
                     </div> <!-- search -->
                 </div><!-- little head -->
             </div><!-- row -->
@@ -122,8 +124,6 @@
         </header><!-- end header -->
 
 		@yield('content')
-
-        {{-- {{ $slot }} --}}
 
 		<footer id="footer">
             <div class="footer-last">
